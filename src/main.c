@@ -1,6 +1,14 @@
 #include <pebble.h>
 #include "main.h"
 
+/*
+To do:
+
+Make steering box a square
+
+*/
+
+
 static Window *window;
 static Layer *bg_layer;
 
@@ -36,6 +44,20 @@ static void bg_create_proc(Layer *layer, GContext *ctx) {
 	graphics_draw_rect(ctx, GRect(15, 7, 14, 5));
 	graphics_draw_rect(ctx, GRect(15, 7, 5, 14));
 	
+	graphics_fill_rect(ctx, GRect(115, 7, 14, 5), 0, GCornerNone);
+	graphics_fill_rect(ctx, GRect(124, 7, 5, 14), 0, GCornerNone);
+	graphics_draw_rect(ctx, GRect(115, 7, 14, 5));
+	graphics_draw_rect(ctx, GRect(124, 7, 5, 14));
+
+	graphics_fill_rect(ctx, GRect(15, 156, 14, 5), 0, GCornerNone);
+	graphics_fill_rect(ctx, GRect(15, 147, 5, 14), 0, GCornerNone);
+	graphics_draw_rect(ctx, GRect(15, 156, 14, 5));
+	graphics_draw_rect(ctx, GRect(15, 147, 5, 14));
+
+	graphics_fill_rect(ctx, GRect(115, 156, 14, 5), 0, GCornerNone);
+	graphics_fill_rect(ctx, GRect(124, 147, 5, 14), 0, GCornerNone);
+	graphics_draw_rect(ctx, GRect(115, 156, 14, 5));
+	graphics_draw_rect(ctx, GRect(124, 147, 5, 14));
 }
 
 static void main_window_load() {
