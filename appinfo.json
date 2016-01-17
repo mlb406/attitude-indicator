@@ -1,18 +1,24 @@
 {
-  "uuid": "34f1f603-bcc8-4585-a195-7f98659dac02",
-  "shortName": "attitude-indicator",
-  "longName": "attitude-indicator",
-  "companyName": "Max Beckett",
-  "versionLabel": "1.0",
-  "sdkVersion": "3",
-  "targetPlatforms": ["basalt"],
-  "watchapp": {
-    "watchface": true
-  },
-  "appKeys": {
-    "dummy": 0
-  },
-  "resources": {
-    "media": []
-  }
+    "appKeys": {
+        "dummy": 0
+    },
+    "capabilities": [
+        ""
+    ],
+    "companyName": "Max Beckett",
+    "longName": "attitude-indicator",
+    "projectType": "native",
+    "resources": {
+        "media": []
+    },
+    "sdkVersion": "3",
+    "shortName": "attitude-indicator",
+    "targetPlatforms": [
+        "basalt"
+    ],
+    "uuid": "34f1f603-bcc8-4585-a195-7f98659dac02",
+    "versionLabel": "1.0",
+    "watchapp": {
+        "watchface": true
+    }
 }

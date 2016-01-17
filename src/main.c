@@ -31,7 +31,8 @@ static void bg_create_proc(Layer *layer, GContext *ctx) {
 	for (int i = 0; i < 6; i++) {
 		graphics_draw_line(ctx, GPoint(line_points_left_x[i], line_points_left_y[i]), GPoint(line_points_right_x[i], line_points_right_y[i]));
 	}
-
+  
+  /*
 	//----------------------------------------------------------------
 	//Corners of steering box
 
@@ -39,25 +40,27 @@ static void bg_create_proc(Layer *layer, GContext *ctx) {
 	graphics_context_set_stroke_color(ctx, GColorBlack);
 	graphics_context_set_stroke_width(ctx, 1);
 
-	graphics_fill_rect(ctx, GRect(15, 7, 14, 5), 0, GCornerNone);
-	graphics_fill_rect(ctx, GRect(15, 7, 5, 14), 0, GCornerNone);
-	graphics_draw_rect(ctx, GRect(15, 7, 14, 5));
-	graphics_draw_rect(ctx, GRect(15, 7, 5, 14));
+	graphics_fill_rect(ctx, GRect(15, 15, 14, 5), 0, GCornerNone);
+	graphics_fill_rect(ctx, GRect(15, 15, 5, 14), 0, GCornerNone);
+	graphics_draw_rect(ctx, GRect(15, 15, 14, 5));
+	graphics_draw_rect(ctx, GRect(15, 15, 5, 14));
 	
-	graphics_fill_rect(ctx, GRect(115, 7, 14, 5), 0, GCornerNone);
-	graphics_fill_rect(ctx, GRect(124, 7, 5, 14), 0, GCornerNone);
-	graphics_draw_rect(ctx, GRect(115, 7, 14, 5));
-	graphics_draw_rect(ctx, GRect(124, 7, 5, 14));
+	graphics_fill_rect(ctx, GRect(115, 15, 14, 5), 0, GCornerNone);
+	graphics_fill_rect(ctx, GRect(124, 15, 5, 14), 0, GCornerNone);
+	graphics_draw_rect(ctx, GRect(115, 15, 14, 5));
+	graphics_draw_rect(ctx, GRect(124, 15, 5, 14));
 
-	graphics_fill_rect(ctx, GRect(15, 156, 14, 5), 0, GCornerNone);
-	graphics_fill_rect(ctx, GRect(15, 147, 5, 14), 0, GCornerNone);
-	graphics_draw_rect(ctx, GRect(15, 156, 14, 5));
-	graphics_draw_rect(ctx, GRect(15, 147, 5, 14));
+	graphics_fill_rect(ctx, GRect(15, 153, 14, 5), 0, GCornerNone);
+	graphics_fill_rect(ctx, GRect(15, 144, 5, 14), 0, GCornerNone);
+	graphics_draw_rect(ctx, GRect(15, 153, 14, 5));
+	graphics_draw_rect(ctx, GRect(15, 144, 5, 14));
 
-	graphics_fill_rect(ctx, GRect(115, 156, 14, 5), 0, GCornerNone);
-	graphics_fill_rect(ctx, GRect(124, 147, 5, 14), 0, GCornerNone);
-	graphics_draw_rect(ctx, GRect(115, 156, 14, 5));
-	graphics_draw_rect(ctx, GRect(124, 147, 5, 14));
+	graphics_fill_rect(ctx, GRect(115, 153, 14, 5), 0, GCornerNone);
+	graphics_fill_rect(ctx, GRect(124, 144, 5, 14), 0, GCornerNone);
+	graphics_draw_rect(ctx, GRect(115, 153, 14, 5));
+	graphics_draw_rect(ctx, GRect(124, 144, 5, 14));
+
+  */
 }
 
 static void main_window_load() {
