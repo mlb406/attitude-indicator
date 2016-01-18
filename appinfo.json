@@ -9,7 +9,14 @@
     "longName": "attitude-indicator",
     "projectType": "native",
     "resources": {
-        "media": []
+        "media": [
+            {
+                "file": "fonts/aispec.ttf",
+                "name": "FONT_AIRBUS_30",
+                "targetPlatforms": null,
+                "type": "font"
+            }
+        ]
     },
     "sdkVersion": "3",
     "shortName": "attitude-indicator",

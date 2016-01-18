@@ -11,6 +11,7 @@ Make steering box a square
 
 static Window *window;
 static Layer *bg_layer;
+static TextLayer *time_layer;
 
 static void bg_create_proc(Layer *layer, GContext *ctx) {
 	graphics_context_set_fill_color(ctx, GColorCobaltBlue);
@@ -68,6 +69,8 @@ static void main_window_load() {
 	layer_set_update_proc(bg_layer, bg_create_proc);
 	layer_add_child(window_get_root_layer(window), bg_layer);
 
+  time_layer = text_layer_create(GRect(0, 0, 144, 168));
+  text_layer_set_
 }
 
 static void main_window_unload() {
