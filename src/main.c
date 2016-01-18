@@ -1,17 +1,11 @@
 #include <pebble.h>
 #include "main.h"
 
-/*
-To do:
-
-Make steering box a square
-
-*/
-
-
 static Window *window;
 static Layer *bg_layer;
 static TextLayer *time_layer;
+static TextLayer *airbus_layer;
+static GFont airbus_font;
 
 static void bg_create_proc(Layer *layer, GContext *ctx) {
 	graphics_context_set_fill_color(ctx, GColorCobaltBlue);
@@ -64,16 +58,30 @@ static void bg_create_proc(Layer *layer, GContext *ctx) {
   */
 }
 
+static void update_time() {
+	time_t temp = time(NULL);
+	struct tm *t = localtime(&temp);
+
+	static 
+
 static void main_window_load() {
+	airbus_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_AIRBUS_18));
+
 	bg_layer = layer_create(GRect(0, 0, 144, 168));
 	layer_set_update_proc(bg_layer, bg_create_proc);
 	layer_add_child(window_get_root_layer(window), bg_layer);
 
-  time_layer = text_layer_create(GRect(0, 0, 144, 168));
-  text_layer_set_
+	time_layer = text_layer_create(GRect(0, 144, 144, 24));
+	text_layer_set_text_color(time_layer, GColorYellow);
+	text_layer_set_background_color(time_layer, GColorClear);
+	text_layer_set_text_alignment(time_layer, GTextAlignmentCenter);
+	text_layer_set_font(time_layer, fonts_get_system_font(FONT_KEY_GOTHIC_18_BOLD));
+	text_layer_set_text(time_layer, "000000");
+	layer_add_child(window_get_root_layer(window), text_layer_get_layer(time_layer));
 }
 
 static void main_window_unload() {
+	text_layer_destroy(time_layer);
 	layer_destroy(bg_layer);
 }
 

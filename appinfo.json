@@ -12,7 +12,7 @@
         "media": [
             {
                 "file": "fonts/aispec.ttf",
-                "name": "FONT_AIRBUS_30",
+                "name": "FONT_AIRBUS_18",
                 "targetPlatforms": null,
                 "type": "font"
             }
