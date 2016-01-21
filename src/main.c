@@ -6,6 +6,8 @@ static Layer *bg_layer;
 static TextLayer *time_layer;
 static TextLayer *airbus_layer;
 static GFont airbus_font;
+static GPath *left_path;
+static GPath *right_path;
 
 static void bg_create_proc(Layer *layer, GContext *ctx) {
 	graphics_context_set_fill_color(ctx, GColorCobaltBlue);
@@ -56,6 +58,14 @@ static void bg_create_proc(Layer *layer, GContext *ctx) {
 	graphics_draw_rect(ctx, GRect(124, 144, 5, 14));
 
   */
+
+	graphics_context_set_fill_color(ctx, GColorBlack);
+	graphics_context_set_stroke_color(ctx, GColorYellow);
+	graphics_context_set_stroke_width(ctx, 1);
+	gpath_draw_filled(ctx, left_path);
+	gpath_draw_outline(ctx, left_path);
+	gpath_draw_filled(ctx, right_path);
+	gpath_draw_outline(ctx, right_path);
 }
 
 static void update_time() {
@@ -80,13 +90,13 @@ static void main_window_load() {
 	layer_set_update_proc(bg_layer, bg_create_proc);
 	layer_add_child(window_get_root_layer(window), bg_layer);
   
-  airbus_layer = text_layer_create(GRect(0, 0, 144, 168));
-  text_layer_set_text_color(airbus_layer, GColorYellow);
-  text_layer_set_background_color(airbus_layer, GColorClear);
-  text_layer_set_text_alignment(airbus_layer, GTextAlignmentCenter);
-  text_layer_set_font(airbus_layer, airbus_font);
-  text_layer_set_text(airbus_layer, "Airbus @");
-  layer_add_child(window_get_root_layer(window), text_layer_get_layer(airbus_layer));
+  	airbus_layer = text_layer_create(GRect(0, 0, 144, 168));
+  	text_layer_set_text_color(airbus_layer, GColorYellow);
+  	text_layer_set_background_color(airbus_layer, GColorClear);
+  	text_layer_set_text_alignment(airbus_layer, GTextAlignmentCenter);
+  	text_layer_set_font(airbus_layer, airbus_font);
+  	text_layer_set_text(airbus_layer, " Airbus @");
+  	layer_add_child(window_get_root_layer(window), text_layer_get_layer(airbus_layer));
 
 	time_layer = text_layer_create(GRect(0, 146, 144, 24));
 	text_layer_set_text_color(time_layer, GColorYellow);
@@ -100,13 +110,13 @@ static void main_window_load() {
 static void main_window_unload() {
 	text_layer_destroy(time_layer);
 	layer_destroy(bg_layer);
-  text_layer_destroy(airbus_layer);
+  	text_layer_destroy(airbus_layer);
 }
 
 static void init() {
 	window = window_create();
   
-  tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
+  	tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
 
 	window_set_window_handlers(window, (WindowHandlers) {
 		.load = main_window_load,
@@ -115,10 +125,18 @@ static void init() {
 
 	window_stack_push(window, true);
   
-  update_time();
+	update_time();
+
+	left_path = gpath_create(&LEFT_POINTS);
+	gpath_move_to(left_path, GPoint(10, 74));
+
+	right_path = gpath_create(&RIGHT_POINTS);
+	gpath_move_to(right_path, GPoint(99, 74));
 }
 
 static void deinit() {
+	gpath_destroy(left_path);
+	gpath_destroy(right_path);
 	window_destroy(window);
 }
 
