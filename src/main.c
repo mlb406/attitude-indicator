@@ -62,7 +62,16 @@ static void update_time() {
 	time_t temp = time(NULL);
 	struct tm *t = localtime(&temp);
 
-	static 
+	static char buffer[] = "000000";
+  
+  strftime(buffer, sizeof(buffer), "%H%M%S", t);
+  
+  text_layer_set_text(time_layer, buffer);
+}
+
+static void tick_handler(struct tm *tick_time, TimeUnits units_changed) {
+  update_time();
+}
 
 static void main_window_load() {
 	airbus_font = fonts_load_custom_font(resource_get_handle(RESOURCE_ID_FONT_AIRBUS_18));
@@ -70,8 +79,16 @@ static void main_window_load() {
 	bg_layer = layer_create(GRect(0, 0, 144, 168));
 	layer_set_update_proc(bg_layer, bg_create_proc);
 	layer_add_child(window_get_root_layer(window), bg_layer);
+  
+  airbus_layer = text_layer_create(GRect(0, 0, 144, 168));
+  text_layer_set_text_color(airbus_layer, GColorYellow);
+  text_layer_set_background_color(airbus_layer, GColorClear);
+  text_layer_set_text_alignment(airbus_layer, GTextAlignmentCenter);
+  text_layer_set_font(airbus_layer, airbus_font);
+  text_layer_set_text(airbus_layer, "Airbus @");
+  layer_add_child(window_get_root_layer(window), text_layer_get_layer(airbus_layer));
 
-	time_layer = text_layer_create(GRect(0, 144, 144, 24));
+	time_layer = text_layer_create(GRect(0, 146, 144, 24));
 	text_layer_set_text_color(time_layer, GColorYellow);
 	text_layer_set_background_color(time_layer, GColorClear);
 	text_layer_set_text_alignment(time_layer, GTextAlignmentCenter);
@@ -83,10 +100,13 @@ static void main_window_load() {
 static void main_window_unload() {
 	text_layer_destroy(time_layer);
 	layer_destroy(bg_layer);
+  text_layer_destroy(airbus_layer);
 }
 
 static void init() {
 	window = window_create();
+  
+  tick_timer_service_subscribe(SECOND_UNIT, tick_handler);
 
 	window_set_window_handlers(window, (WindowHandlers) {
 		.load = main_window_load,
@@ -94,6 +114,8 @@ static void init() {
 	});
 
 	window_stack_push(window, true);
+  
+  update_time();
 }
 
 static void deinit() {
